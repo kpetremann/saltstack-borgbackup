@@ -44,6 +44,22 @@ def archives(repository_path):
         return result
 
 
+def info(repository_path, archive=""):
+    """
+    Get repository or archive information.
+
+    :param repository_path: path of BorgBackup repository
+    :param archive: name of archive
+    """
+    path = f"{repository_path}::{archive}" if archive else repository_path
+
+    result = __salt__["cmd.shell"](f"borg info --json {path}")
+    try:
+        return json.loads(result)
+    except json.JSONDecodeError:
+        return result
+
+
 def explore(repository_path, archive, inpath=""):
     """
     List BorgBackup archive content.
