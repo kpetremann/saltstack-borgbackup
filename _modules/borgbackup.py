@@ -20,7 +20,7 @@ def __virtual__():
 
 def latest(repository_path):
     """
-    List BorgBackup archives.
+    Get latest archive in repository.
 
     :param repository_path: path of BorgBackup repository
     """
