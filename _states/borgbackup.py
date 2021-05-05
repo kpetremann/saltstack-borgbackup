@@ -20,10 +20,7 @@ def __virtual__():
 def _get_level_strip_components(name):
     # get the level of the item in the backup tree
     path_parts = Path(name).parts
-    nb_level = len(path_parts) - 2
-
-    if nb_level < 0:
-        nb_level = 0
+    nb_level = max(len(path_parts) - 2, 0)
 
     return nb_level
 
