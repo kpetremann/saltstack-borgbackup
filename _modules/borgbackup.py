@@ -24,7 +24,7 @@ def latest(repository_path):
 
     :param repository_path: path of BorgBackup repository
     """
-    result = __salt__["cmd.shell"](f"borg list --json {repository_path} --last 1")
+    result = __salt__["cmd.run"](f"borg list --json {repository_path} --last 1")
     try:
         return json.loads(result)
     except json.JSONDecodeError:
@@ -37,7 +37,7 @@ def archives(repository_path):
 
     :param repository_path: path of BorgBackup repository
     """
-    result = __salt__["cmd.shell"](f"borg list --json {repository_path}")
+    result = __salt__["cmd.run"](f"borg list --json {repository_path}")
     try:
         return json.loads(result)
     except json.JSONDecodeError:
@@ -53,7 +53,7 @@ def info(repository_path, archive=""):
     """
     path = f"{repository_path}::{archive}" if archive else repository_path
 
-    result = __salt__["cmd.shell"](f"borg info --json {path}")
+    result = __salt__["cmd.run"](f"borg info --json {path}")
     try:
         return json.loads(result)
     except json.JSONDecodeError:
@@ -68,7 +68,7 @@ def explore(repository_path, archive, inpath=""):
     :param archive: name of archive
     :param inpath: path of directory or file in the archive
     """
-    result = __salt__["cmd.shell"](f"borg list --json-lines {repository_path}::{archive} {inpath}")
+    result = __salt__["cmd.run"](f"borg list --json-lines {repository_path}::{archive} {inpath}")
 
     decoded = []
     try:
@@ -100,7 +100,7 @@ def extract(repository_path, archive, inpath, target, strip_components=0, test=F
         f"{dry_run} {repository_path}::{archive} {in_archive_path}"
     )
 
-    res = __salt__["cmd.shell"](cmd, cwd=target)
+    res = __salt__["cmd.run"](cmd, cwd=target)
     result = __context__["retcode"] == 0
 
     changes = f"{repository_path}::{archive} {inpath} restored to {target}" if result else ""
