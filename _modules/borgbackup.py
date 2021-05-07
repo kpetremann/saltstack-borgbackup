@@ -6,8 +6,8 @@ Execution module for BorgBackup (https://borgbackup.readthedocs.io/en/stable/).
 :depends:    borgbackup
 :platform:   all (tested only on linux)
 """
-import os
 import json
+import os
 
 __virtual_aliases__ = ("borg",)
 
