@@ -1,0 +1,7 @@
+bandit
+black
+isort
+pycodestyle
+pydocstyle
+pylama
+pylint
