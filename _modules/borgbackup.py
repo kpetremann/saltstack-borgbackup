@@ -68,7 +68,9 @@ def explore(repository_path, archive, inpath=""):
     :param archive: name of archive
     :param inpath: path of directory or file in the archive
     """
-    result = __salt__["cmd.run"](f"borg list --json-lines {repository_path}::{archive} {inpath}")
+    result = __salt__["cmd.run"](
+        f"borg list --json-lines {repository_path}::{archive} {inpath}"
+    )
 
     decoded = []
     try:
@@ -103,7 +105,9 @@ def extract(repository_path, archive, inpath, target, strip_components=0, test=F
     res = __salt__["cmd.run"](cmd, cwd=target)
     result = __context__["retcode"] == 0
 
-    changes = f"{repository_path}::{archive} {inpath} restored to {target}" if result else ""
+    changes = (
+        f"{repository_path}::{archive} {inpath} restored to {target}" if result else ""
+    )
 
     if test and result:
         changes = f"dry-run: {repository_path}::{archive} {inpath} restored to {target}"
