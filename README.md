@@ -8,7 +8,7 @@
 latest(repository_path)
 ```
 
-List BorgBackup archives.
+Get latest archive in repository.
 
 **Arguments**:
 
@@ -25,6 +25,19 @@ List BorgBackup archives.
 **Arguments**:
 
 - `repository_path`: path of BorgBackup repository
+
+#### info
+
+```python
+info(repository_path, archive="")
+```
+
+Get repository or archive information.
+
+**Arguments**:
+
+- `repository_path`: path of BorgBackup repository
+- `archive`: name of archive
 
 #### explore
 
