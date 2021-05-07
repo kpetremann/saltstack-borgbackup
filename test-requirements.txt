@@ -1,5 +1,6 @@
 bandit
 black
+invoke
 isort
 pycodestyle
 pydocstyle
